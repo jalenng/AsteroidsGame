@@ -42,6 +42,7 @@ class Spaceship extends Floater
     }
     Spaceship()
     {
+    	myColor = color(150, 150, 150);
     	corners = 11;
     	xCorners = new int[corners];
     	yCorners = new int[corners];
