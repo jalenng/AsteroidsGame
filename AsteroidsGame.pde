@@ -1,3 +1,8 @@
+boolean wIsPressed;
+boolean aIsPressed;
+boolean sIsPressed;
+boolean dIsPressed;
+
 //your variable declarations here
 Spaceship spaceship;
 Star[] stars = new Star[50];
@@ -24,22 +29,64 @@ public void draw()
 	if (keyPressed) {keyDownMethod();}
 }
 
+public void keyPressed()
+{
+  if (key == 'w')
+  {
+    wIsPressed = true;
+  }
+  if (key == 'a')
+  {
+    aIsPressed = true;
+  }
+  if (key == 's')
+  {
+    sIsPressed = true;
+  }
+  if (key == 'd')
+  {
+    dIsPressed = true;
+  }
+}
+public void keyReleased()
+{
+  if (key == 'w')
+  {
+    wIsPressed = false;
+  }
+  if (key == 'a')
+  {
+    aIsPressed = false;
+  }
+  if (key == 's')
+  {
+    sIsPressed = false;
+  }
+  if (key == 'd')
+  {
+    dIsPressed = false;
+  }
+}
+
 public void keyDownMethod()
 {	
-	if (key == 'w')
-	{
+	if (wIsPressed)	{
 		spaceship.accelerate(0.04);
 	}
-	if (key == 's')
+	if (sIsPressed)
 	{
 		spaceship.accelerate(-0.02);
 	}
-	if (key == 'a' && key != 'w')
+	if (aIsPressed)
 	{
 		spaceship.turn(-5);
 	}
-	if (key == 'd' && key != 'w')
+	if (dIsPressed)
 	{
 		spaceship.turn(5);
+	}
+	if (key == ' ')
+	{
+		spaceship.hyperspace();
 	}
 }

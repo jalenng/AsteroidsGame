@@ -24,8 +24,8 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     //convert the current direction the floater is pointing to radians    
     double dRadians =myPointDirection*(Math.PI/180);     
     //change coordinates of direction of travel    
-    myDirectionX += ((dAmount) * Math.cos(dRadians));    
-    myDirectionY += ((dAmount) * Math.sin(dRadians));       
+    myDirectionX = min((float)(myDirectionX + ((dAmount) * Math.cos(dRadians))), 30.0);    
+    myDirectionY = min((float)(myDirectionY + ((dAmount) * Math.sin(dRadians))), 30.0);       
   }   
   public void turn (int nDegreesOfRotation)   
   {     
