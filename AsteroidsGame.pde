@@ -2,6 +2,7 @@ boolean wIsPressed;
 boolean aIsPressed;
 boolean sIsPressed;
 boolean dIsPressed;
+boolean spaceIsHeld;
 
 //your variable declarations here
 Spaceship spaceship;
@@ -85,8 +86,13 @@ public void keyDownMethod()
 	{
 		spaceship.turn(5);
 	}
-	if (key == ' ')
+	if (key == ' ' && !spaceIsHeld)
 	{
 		spaceship.hyperspace();
+		spaceIsHeld = true;
+	}
+	else if (key != ' ')
+	{
+		spaceIsHeld = false;
 	}
 }
