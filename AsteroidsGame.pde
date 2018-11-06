@@ -6,7 +6,7 @@ boolean spaceIsHeld;
 
 //your variable declarations here
 Spaceship spaceship;
-Star[] stars = new Star[50];
+Star[] stars = new Star[500];
 
 public void setup() 
 {
@@ -26,6 +26,7 @@ public void draw()
 	for (int i = 0; i < stars.length; i++)
 	{
 		stars[i].show();
+		stars[i].move();
 	}
 	if (keyPressed) {keyDownMethod();}
 }
