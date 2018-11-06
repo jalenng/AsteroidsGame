@@ -1,4 +1,4 @@
-class Asteroid extends Floater
-{
+//class Asteroid extends Floater
+//{
 
-}
+//
