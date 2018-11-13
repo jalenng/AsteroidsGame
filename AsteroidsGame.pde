@@ -7,6 +7,7 @@ boolean spaceIsHeld;
 //your variable declarations here
 Spaceship spaceship;
 Star[] stars = new Star[500];
+ArrayList <Asteroid> asteroidsList = new ArrayList <Asteroid>();
 Asteroid asteroid;
 
 public void setup() 
@@ -30,6 +31,8 @@ public void draw()
 	}
 	spaceship.show();
 	spaceship.move();
+	asteroid.show();
+	asteroid.move();
 	if (keyPressed) {keyDownMethod();}
 }
 

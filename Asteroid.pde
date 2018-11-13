@@ -4,9 +4,9 @@ class Asteroid extends Floater
 	public Asteroid() 
 	{
 		rotationSpeed = (int)(Math.random() * 21) - 10;
-		myCenterX = width / 2;
-    	myCenterY = height / 2;
-    	myColor = color(150, 150, 150);
+		myCenterX = (int)(Math.random() * width);
+    	myCenterY = (int)(Math.random() * height);
+    	myColor = color(180, 110, 45);
     	corners = 11;
     	xCorners = new int[corners];
     	yCorners = new int[corners];
