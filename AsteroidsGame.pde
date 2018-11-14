@@ -6,18 +6,20 @@ boolean spaceIsHeld;
 
 //your variable declarations here
 Spaceship spaceship;
-Star[] stars = new Star[500];
+Star[] stars = new Star[750];
 ArrayList <Asteroid> asteroidsList = new ArrayList <Asteroid>();
-Asteroid asteroid;
 
 public void setup() 
 {
 	size(500, 500);
 	spaceship = new Spaceship();
-	asteroid = new Asteroid();
 	for (int i = 0; i < stars.length; i++)
 	{
 		stars[i] = new Star();
+	}
+	for (int i = 0; i < 10; i++)
+	{
+		asteroidsList.add(new Asteroid());
 	}
 }
 
@@ -29,10 +31,13 @@ public void draw()
 		stars[i].show();
 		stars[i].move();
 	}
+	for (int i = 0; i < asteroidsList.size(); i++)
+	{
+		asteroidsList.get(i).show();
+		asteroidsList.get(i).move();
+	}
 	spaceship.show();
 	spaceship.move();
-	asteroid.show();
-	asteroid.move();
 	if (keyPressed) {keyDownMethod();}
 }
 
