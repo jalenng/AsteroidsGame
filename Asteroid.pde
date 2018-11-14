@@ -5,7 +5,7 @@ class Asteroid extends Floater
 	private double myInitAngle;
 	public Asteroid() 
 	{
-		rotationSpeed = (int)(Math.random() * 21) - 10;
+		rotationSpeed = (int)(Math.random() * 11) - 5;
 		myCenterX = (int)(Math.random() * width);
     	myCenterY = (int)(Math.random() * height);
     	myInitSpeed = Math.random() * 2;

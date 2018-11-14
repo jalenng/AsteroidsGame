@@ -35,6 +35,11 @@ public void draw()
 	{
 		asteroidsList.get(i).show();
 		asteroidsList.get(i).move();
+		if (dist(spaceship.getX(), spaceship.getY(), 
+			asteroidsList.get(i).getX(), asteroidsList.get(i).getY()) < 20)
+		{
+			asteroidsList.remove(i);
+		}
 	}
 	spaceship.show();
 	spaceship.move();
