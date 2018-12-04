@@ -3,22 +3,17 @@ boolean aIsPressed;
 boolean sIsPressed;
 boolean dIsPressed;
 boolean spaceIsHeld;
-boolean isInHyperspace;
-int temp = 0;
 
 //your variable declarations here
 Spaceship spaceship;
-Star[] stars = new Star[750];
+Starfield sky;
 ArrayList <Asteroid> asteroidsList = new ArrayList <Asteroid>();
 
 public void setup() 
 {
 	size(500, 500);
 	spaceship = new Spaceship();
-	for (int i = 0; i < stars.length; i++)
-	{
-		stars[i] = new Star();
-	}
+	sky = new Starfield(700);
 	for (int i = 0; i < 10; i++)
 	{
 		asteroidsList.add(new Asteroid());
@@ -28,23 +23,8 @@ public void setup()
 public void draw() 
 {
 	background(0);
-	if (!isInHyperspace)
-	{
-		for (int i = 0; i < stars.length; i++)
-		{
-			stars[i].show();
-			stars[i].move();
-		}
-	}
-	else
-	{
-		for (int i = 0; i < stars.length; i++)
-		{
-			stars[i].move("out", temp);
-			stars[i].show();
-		}
-		temp++;
-	}
+	sky.show();
+	sky.move();
 	for (int i = 0; i < asteroidsList.size(); i++)
 	{
 		asteroidsList.get(i).show();
@@ -119,7 +99,7 @@ public void keyDownMethod()
 	if (key == ' ' && !spaceIsHeld)
 	{
 		spaceship.hyperspace();
-		isInHyperspace = true;
+		sky.setHyperspace(true);
 		spaceIsHeld = true;
 	}
 	else if (key != ' ')

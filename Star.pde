@@ -4,9 +4,9 @@ class Star //note that this class does NOT extend Floater
 	private double myY;
 	private double myZ;
   private double mySpeed;
-  private double myAngle;
 	private float myBrightness;
-	private int mySize;
+	private float mySize;
+  private float myHyperspaceTimer;
 
  	public Star()
   	{
@@ -15,6 +15,7 @@ class Star //note that this class does NOT extend Floater
   		myZ = (Math.random() * 100) + 1;
   		myBrightness = (float)(myZ * 2);
   		mySize = (int)(Math.random() * 4);
+      myHyperspaceTimer = 0;
   	}
   	public void show()
   	{
@@ -32,13 +33,34 @@ class Star //note that this class does NOT extend Floater
   		if (myX < 0) {myX = width;}
   		if (myY < 0) {myY = height;}
   	}
-    public void move(String direction, int speed)
+
+    public double getX()
     {
-      if (direction == "out")
-      {
-        myAngle = Math.atan2(myX, myY);
-        myX -= Math.cos(myAngle) * speed;
-        myY -= Math.sin(myAngle) * speed;
-      }
+      return myX;
+    }
+
+    public double getY()
+    {
+      return myY;
+    }
+
+    public float getSize()
+    {
+      return mySize;
+    }
+
+    public void setX(double x)
+    {
+      myX = x;
+    }
+
+    public void setY(double y)
+    {
+      myY = y;
+    }
+
+    public void setSize(float size)
+    {
+      mySize = size;
     }
 }
