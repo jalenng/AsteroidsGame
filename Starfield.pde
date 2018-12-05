@@ -1,13 +1,14 @@
 class Starfield
 {
 	private Star[] myStars;
-	private boolean isInHyperspace;
+	private String hyperspaceMode;
 	private float hyperspaceTimer;
 
 	Starfield(int stars)
 	{
 		myStars = new Star[stars];
-		isInHyperspace = false;
+		hyperspaceMode = "off";
+		hyperspaceTimer = 0.1;
 		for (int i = 0; i < myStars.length; i++)
 		{
 			myStars[i] = new Star();
@@ -24,29 +25,58 @@ class Starfield
 
 	public void move()
 	{
-		if (!isInHyperspace)
+		if (hyperspaceMode == "off")
 		{
 			for (int i = 0; i < myStars.length; i++)
 			{
 				myStars[i].move();
 			}
 		}
-		else if (hyperspaceTimer < 100)
+		else
 		{
 			for (int i = 0; i < myStars.length; i++)
 			{
-				double myAngle = Math.atan2(myStars[i].getX() - (width / 2), myStars[i].getY() - (height / 2));
-				myStars[i].setX(myStars[i].getX() - Math.cos(myAngle) * hyperspaceTimer);
-				myStars[i].setY(myStars[i].getY() - Math.sin(-myAngle) * hyperspaceTimer);
-				myStars[i].setSize(myStars[i].getSize() + 0.05);
-				println(myAngle);
+				double myAngle = Math.atan2(myStars[i].getX() - (width / 2), myStars[i].getY() - (height / 2)) + (PI / 2);
+				if (dist((float)myStars[i].getX(), (float)myStars[i].getY(), (float)width / 2, (float)height / 2) 
+					> dist(0, 0, (float)width / 2, (float)height / 3))
+				{
+					myStars[i] = new Star();
+				}
+				else
+				{
+					myStars[i].setX(myStars[i].getX() - Math.cos(myAngle) * hyperspaceTimer);
+					myStars[i].setY(myStars[i].getY() - Math.sin(-myAngle) * hyperspaceTimer);
+					myStars[i].setSize(myStars[i].getSize() + 0.005);
+				}
 			}
-			hyperspaceTimer += 0.1;
-		}	
+			
+			if (hyperspaceMode == "entering")
+			{
+				if (hyperspaceTimer < 30)
+				{
+					hyperspaceTimer *= 1.05;
+				}
+				else
+				{
+					hyperspaceMode = "exiting";
+				}
+			}
+			else
+			{
+				if (hyperspaceTimer > 1)
+				{
+					hyperspaceTimer /= 1.05;
+				}
+				else
+				{
+					hyperspaceMode = "off";	
+				}
+			}
+		}
 	}
 
-	public void setHyperspace (boolean status)
+	public void setHyperspace (String status)
 	{
-		isInHyperspace = status;
+		hyperspaceMode = status;
 	}
 }

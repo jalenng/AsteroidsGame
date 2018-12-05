@@ -99,7 +99,7 @@ public void keyDownMethod()
 	if (key == ' ' && !spaceIsHeld)
 	{
 		spaceship.hyperspace();
-		sky.setHyperspace(true);
+		sky.setHyperspace("entering");
 		spaceIsHeld = true;
 	}
 	else if (key != ' ')
