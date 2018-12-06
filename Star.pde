@@ -28,10 +28,10 @@ class Star //note that this class does NOT extend Floater
       mySpeed = -4 * spaceship.getDirectionX() / myZ;
   		myX += mySpeed;
   		myY += mySpeed;
-  		if (myX > width) {myX = 0;}
-  		if (myY > height) {myY = 0;}
-  		if (myX < 0) {myX = width;}
-  		if (myY < 0) {myY = height;}
+      if (myX > width + 20) {myX = -20;}
+  		if (myY > height + 20) {myY = -20;}
+  		if (myX < -20) {myX = width + 20;}
+  		if (myY < -20) {myY = height + 20;}
   	}
 
     public double getX()

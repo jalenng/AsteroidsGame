@@ -3,9 +3,11 @@ class Starfield
 	private Star[] myStars;
 	private String hyperspaceMode;
 	private float hyperspaceTimer;
+	private float backgroundAlpha;
 
 	Starfield(int stars)
 	{
+		backgroundAlpha = 255;
 		myStars = new Star[stars];
 		hyperspaceMode = "off";
 		hyperspaceTimer = 0.1;
@@ -17,6 +19,8 @@ class Starfield
 
 	public void show()
 	{
+		fill(0, backgroundAlpha);
+		rect(0, 0, width, height);
 		for (int i = 0; i < myStars.length; i++)
 		{
 			myStars[i].show();
@@ -52,9 +56,9 @@ class Starfield
 			
 			if (hyperspaceMode == "entering")
 			{
-				if (hyperspaceTimer < 30)
+				if (hyperspaceTimer < 20)
 				{
-					hyperspaceTimer *= 1.05;
+					hyperspaceTimer *= 1.03;
 				}
 				else
 				{
@@ -65,13 +69,15 @@ class Starfield
 			{
 				if (hyperspaceTimer > 1)
 				{
-					hyperspaceTimer /= 1.05;
+					hyperspaceTimer /= 1.03;
 				}
 				else
 				{
 					hyperspaceMode = "off";	
 				}
 			}
+			backgroundAlpha = 100 * (1 - (hyperspaceTimer / 30));
+			println(backgroundAlpha);
 		}
 	}
 

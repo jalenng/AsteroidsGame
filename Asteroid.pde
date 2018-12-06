@@ -16,8 +16,8 @@ class Asteroid extends Floater
     	corners = 17;
     	xCorners = new int[corners];
     	yCorners = new int[corners];
-    	int[] xS = {20, 20, 15, 11, 8, 0, -8, -11, -17, -20, -20, -19, -10, -1, 7, 14, 18};
-    	int[] yS = {0, 2, 11, 15, 16, 16, 15, 13, 6, -2, -4, -6, -13, -16, -15, -10, -5};
+    	int[] xS = {15, 15, 11, 8, 6, 0, -6, -8, -13, -15, -15, -14, -8, -1, 6, 11, 14};
+    	int[] yS = {0, 2, 8, 11, 12, 12, 11, 11, 5, -2, -3, -5, -9, -12, -11, -7, -4};
     	xCorners = xS;
     	yCorners = yS;
 	}

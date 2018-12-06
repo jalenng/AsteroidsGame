@@ -1,7 +1,9 @@
 class Bullet extends Floater
 {
+	private int myLife;
 	public Bullet(Spaceship theShip)
 	{
+		int myLife = 1000;
 		myCenterX = theShip.getX();
 		myCenterY = theShip.getY();
 		myPointDirection = theShip.getPointDirection();
@@ -12,9 +14,18 @@ class Bullet extends Floater
 
 	public void show()
 	{
-		ellipse((float)myCenterX, (float)myCenterY, 10, 10);
+		noStroke();
+		fill(200, 200, 200);
+		ellipse((float)myCenterX, (float)myCenterY, 5, 5);
 	}
-
+	public void setLife(int life)
+	{
+		myLife = life;
+	}
+	public int getLife()
+	{
+		return myLife;
+	}
 	public void setX(int x)
 	{
 		myCenterX = x;

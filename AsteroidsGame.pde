@@ -2,15 +2,19 @@ boolean wIsPressed;
 boolean aIsPressed;
 boolean sIsPressed;
 boolean dIsPressed;
-boolean spaceIsHeld;
+boolean shiftIsPressed;
+boolean spaceIsPressed;
 
 //your variable declarations here
 Spaceship spaceship;
 Starfield sky;
+Bullet die;
 ArrayList <Asteroid> asteroidsList = new ArrayList <Asteroid>();
+ArrayList <Bullet> bulletsList = new ArrayList <Bullet>();
 
 public void setup() 
 {
+	frameRate(60);
 	size(500, 500);
 	spaceship = new Spaceship();
 	sky = new Starfield(700);
@@ -22,7 +26,6 @@ public void setup()
 
 public void draw() 
 {
-	background(0);
 	sky.show();
 	sky.move();
 	for (int i = 0; i < asteroidsList.size(); i++)
@@ -30,9 +33,33 @@ public void draw()
 		asteroidsList.get(i).show();
 		asteroidsList.get(i).move();
 		if (dist(spaceship.getX(), spaceship.getY(), 
-			asteroidsList.get(i).getX(), asteroidsList.get(i).getY()) < 20)
+			asteroidsList.get(i).getX(), asteroidsList.get(i).getY()) < 15)
 		{
 			asteroidsList.remove(i);
+		}
+	}
+	for (int i = 0; i < bulletsList.size(); i++)
+	{
+		bulletsList.get(i).show();
+		bulletsList.get(i).move();
+		for (int j = 0; j < asteroidsList.size(); j++)
+		{
+			if (dist(bulletsList.get(i).getX(), bulletsList.get(i).getY(), 
+				asteroidsList.get(j).getX(), asteroidsList.get(j).getY()) < 15)
+			{
+				bulletsList.remove(i);
+				asteroidsList.remove(j);
+				break;
+			}
+		}
+		if (bulletsList.get(i).getLife() > 0)
+		{
+			bulletsList.get(i).setLife(bulletsList.get(i).getLife() - 1);
+			println(bulletsList.get(i).getLife());
+		}
+		else
+		{
+			bulletsList.remove(i);
 		}
 	}
 	spaceship.show();
@@ -58,6 +85,14 @@ public void keyPressed()
   {
     dIsPressed = true;
   }
+  if (key == CODED && keyCode == SHIFT)
+  {
+  	shiftIsPressed = true;
+  }
+  if (key == ' ')
+  {
+	spaceIsPressed = true;
+  }
 }
 public void keyReleased()
 {
@@ -76,6 +111,14 @@ public void keyReleased()
   if (key == 'd')
   {
     dIsPressed = false;
+  }
+  if (key == CODED && keyCode == SHIFT)
+  {
+  	shiftIsPressed = false;
+  }
+  if (key == ' ')
+  {
+	spaceIsPressed = false;
   }
 }
 
@@ -96,14 +139,13 @@ public void keyDownMethod()
 	{
 		spaceship.turn(5);
 	}
-	if (key == ' ' && !spaceIsHeld)
+	if (shiftIsPressed)
 	{
 		spaceship.hyperspace();
 		sky.setHyperspace("entering");
-		spaceIsHeld = true;
 	}
-	else if (key != ' ')
+	if (spaceIsPressed)
 	{
-		spaceIsHeld = false;
+		bulletsList.add(new Bullet(spaceship));
 	}
 }
