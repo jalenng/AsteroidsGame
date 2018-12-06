@@ -52,14 +52,11 @@ public void draw()
 				break;
 			}
 		}
-		if (bulletsList.get(i).getLife() > 0)
-		{
-			bulletsList.get(i).setLife(bulletsList.get(i).getLife() - 1);
-			println(bulletsList.get(i).getLife());
-		}
-		else
+		if (bulletsList.get(i).getX() < -10 || bulletsList.get(i).getX() > width + 10 || 
+			bulletsList.get(i).getY() < -10 || bulletsList.get(i).getY() > height + 10)
 		{
 			bulletsList.remove(i);
+			break;
 		}
 	}
 	spaceship.show();

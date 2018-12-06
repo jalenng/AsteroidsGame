@@ -19,8 +19,7 @@ class Starfield
 
 	public void show()
 	{
-		fill(0, backgroundAlpha);
-		rect(0, 0, width, height);
+		background(0, backgroundAlpha);
 		for (int i = 0; i < myStars.length; i++)
 		{
 			myStars[i].show();
@@ -77,7 +76,6 @@ class Starfield
 				}
 			}
 			backgroundAlpha = 100 * (1 - (hyperspaceTimer / 30));
-			println(backgroundAlpha);
 		}
 	}
 
