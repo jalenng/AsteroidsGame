@@ -10,7 +10,7 @@ class Starfield
 		backgroundAlpha = 255;
 		myStars = new Star[stars];
 		hyperspaceMode = "off";
-		hyperspaceTimer = 0.1;
+		hyperspaceTimer = 0.05;
 		for (int i = 0; i < myStars.length; i++)
 		{
 			myStars[i] = new Star();
@@ -19,7 +19,7 @@ class Starfield
 
 	public void show()
 	{
-		background(0, backgroundAlpha);
+		background(0);
 		for (int i = 0; i < myStars.length; i++)
 		{
 			myStars[i].show();
@@ -49,7 +49,7 @@ class Starfield
 				{
 					myStars[i].setX(myStars[i].getX() - Math.cos(myAngle) * hyperspaceTimer);
 					myStars[i].setY(myStars[i].getY() - Math.sin(-myAngle) * hyperspaceTimer);
-					myStars[i].setSize(myStars[i].getSize() + 0.005);
+					myStars[i].setSize(myStars[i].getSize() + 0.001);
 				}
 			}
 			
@@ -57,7 +57,7 @@ class Starfield
 			{
 				if (hyperspaceTimer < 20)
 				{
-					hyperspaceTimer *= 1.03;
+					hyperspaceTimer *= 1.1;
 				}
 				else
 				{
@@ -68,14 +68,13 @@ class Starfield
 			{
 				if (hyperspaceTimer > 1)
 				{
-					hyperspaceTimer /= 1.03;
+					hyperspaceTimer /= 1.1;
 				}
 				else
 				{
 					hyperspaceMode = "off";	
 				}
 			}
-			backgroundAlpha = 100 * (1 - (hyperspaceTimer / 30));
 		}
 	}
 
