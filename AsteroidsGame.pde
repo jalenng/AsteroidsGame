@@ -4,6 +4,9 @@ boolean sIsPressed;
 boolean dIsPressed;
 boolean shiftIsPressed;
 boolean spaceIsPressed;
+int lastBulletTimer;
+
+float masterScale;
 
 //your variable declarations here
 Spaceship spaceship;
@@ -15,10 +18,11 @@ ArrayList <Bullet> bulletsList = new ArrayList <Bullet>();
 public void setup() 
 {
 	frameRate(60);
-	size(500, 500);
+	size(800, 800);
+	masterScale = Math.min(width, height) / 400;
 	spaceship = new Spaceship();
 	sky = new Starfield(700);
-	for (int i = 0; i < 10; i++)
+	for (int i = 0; i < 15; i++)
 	{
 		asteroidsList.add(new Asteroid());
 	}
@@ -26,12 +30,13 @@ public void setup()
 
 public void draw() 
 {
-	sky.show();
-	sky.move();
+	sky.show(masterScale);
+	sky.move(masterScale);
+	float scale = (19.5 - sky.getHyperspaceTimer()) / 20;
 	for (int i = 0; i < asteroidsList.size(); i++)
 	{
-		asteroidsList.get(i).show();
-		asteroidsList.get(i).move();
+		asteroidsList.get(i).show(masterScale * scale);
+		asteroidsList.get(i).move(masterScale);
 		if (dist(spaceship.getX(), spaceship.getY(), 
 			asteroidsList.get(i).getX(), asteroidsList.get(i).getY()) < 15)
 		{
@@ -40,27 +45,31 @@ public void draw()
 	}
 	for (int i = 0; i < bulletsList.size(); i++)
 	{
-		bulletsList.get(i).show();
-		bulletsList.get(i).move();
-		for (int j = 0; j < asteroidsList.size(); j++)
-		{
-			if (dist(bulletsList.get(i).getX(), bulletsList.get(i).getY(), 
-				asteroidsList.get(j).getX(), asteroidsList.get(j).getY()) < 15)
-			{
-				bulletsList.remove(i);
-				asteroidsList.remove(j);
-				break;
-			}
-		}
+		bulletsList.get(i).show(masterScale * scale);
+		bulletsList.get(i).move(masterScale);
 		if (bulletsList.get(i).getX() < -10 || bulletsList.get(i).getX() > width + 10 || 
 			bulletsList.get(i).getY() < -10 || bulletsList.get(i).getY() > height + 10)
 		{
 			bulletsList.remove(i);
 			break;
 		}
+		for (int j = 0; j < asteroidsList.size(); j++)
+		{
+			if (dist(bulletsList.get(i).getX(), bulletsList.get(i).getY(), 
+				asteroidsList.get(j).getX(), asteroidsList.get(j).getY()) < 15 * masterScale)
+			{
+				bulletsList.remove(i);
+				asteroidsList.remove(j);
+				break;
+			}
+		}
 	}
-	spaceship.show();
-	spaceship.move();
+	if (scale <= 0)
+	{
+		spaceship.hyperspace();
+	}
+	spaceship.show(masterScale * scale);
+	spaceship.move(masterScale);
 	if (keyPressed) {keyDownMethod();}
 }
 
@@ -88,7 +97,11 @@ public void keyPressed()
   }
   if (key == ' ')
   {
-	spaceIsPressed = true;
+  	if (!spaceIsPressed)
+	{
+		spaceIsPressed = true;
+		lastBulletTimer = 0;
+	}
   }
 }
 public void keyReleased()
@@ -121,28 +134,38 @@ public void keyReleased()
 
 public void keyDownMethod()
 {	
-	if (wIsPressed)	{
-		spaceship.accelerate(0.04);
-	}
-	if (sIsPressed)
+	if (sky.getHyperspaceMode() == "off")
 	{
-		spaceship.accelerate(-0.02);
-	}
-	if (aIsPressed)
-	{
-		spaceship.turn(-5);
-	}
-	if (dIsPressed)
-	{
-		spaceship.turn(5);
-	}
-	if (shiftIsPressed)
-	{
-		spaceship.hyperspace();
-		sky.setHyperspace("entering");
-	}
-	if (spaceIsPressed)
-	{
-		bulletsList.add(new Bullet(spaceship));
+		if (wIsPressed)	{
+			spaceship.accelerate(0.04);
+		}
+		if (sIsPressed)
+		{
+			spaceship.accelerate(-0.02);
+		}
+		if (aIsPressed)
+		{
+			spaceship.turn(-5);
+		}
+		if (dIsPressed)
+		{
+			spaceship.turn(5);
+		}
+		if (shiftIsPressed)
+		{
+			sky.setHyperspace("entering");
+		}
+		if (spaceIsPressed)
+		{
+			if (lastBulletTimer == 0)
+			{
+				bulletsList.add(new Bullet(spaceship));
+				lastBulletTimer = 10;
+			}
+			else
+			{
+				lastBulletTimer--;
+			}
+		}
 	}
 }

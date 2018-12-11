@@ -3,6 +3,9 @@ class Asteroid extends Floater
 	private int rotationSpeed;
 	private double myInitSpeed;
 	private double myInitAngle;
+	private double myScale;
+	private int[] xSOriginal = {15, 15, 11, 8, 6, 0, -6, -8, -13, -15, -15, -14, -8, -1, 6, 11, 14};
+   	private int[] ySOriginal = {0, 2, 8, 11, 12, 12, 11, 11, 5, -2, -3, -5, -9, -12, -11, -7, -4};
 	public Asteroid() 
 	{
 		rotationSpeed = (int)(Math.random() * 11) - 5;
@@ -13,18 +16,20 @@ class Asteroid extends Floater
     	myDirectionX = myInitSpeed * Math.cos(myInitAngle);
     	myDirectionY = myInitSpeed * Math.sin(myInitAngle);
     	myColor = color(100);
+    	myScale = Math.random() + 0.5;
     	corners = 17;
     	xCorners = new int[corners];
     	yCorners = new int[corners];
-    	int[] xS = {15, 15, 11, 8, 6, 0, -6, -8, -13, -15, -15, -14, -8, -1, 6, 11, 14};
-    	int[] yS = {0, 2, 8, 11, 12, 12, 11, 11, 5, -2, -3, -5, -9, -12, -11, -7, -4};
-    	xCorners = xS;
-    	yCorners = yS;
+    	for (int i = 0; i < corners; i++)
+    	{
+    		xCorners[i] = (int)(xSOriginal[i] * myScale);
+    		yCorners[i] = (int)(ySOriginal[i] * myScale);
+    	}
 	}
-	public void move()
+	public void move(float scale)
 	{
 		super.turn(rotationSpeed);
-		super.move();
+		super.move(scale);
 	}
 	public void setX(int x)
 	{

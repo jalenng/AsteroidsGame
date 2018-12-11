@@ -17,22 +17,22 @@ class Starfield
 		}
 	}
 
-	public void show()
+	public void show(float scale)
 	{
 		background(0);
 		for (int i = 0; i < myStars.length; i++)
 		{
-			myStars[i].show();
+			myStars[i].show(scale);
 		}
 	}
 
-	public void move()
+	public void move(float scale)
 	{
 		if (hyperspaceMode == "off")
 		{
 			for (int i = 0; i < myStars.length; i++)
 			{
-				myStars[i].move();
+				myStars[i].move(scale);
 			}
 		}
 		else
@@ -48,7 +48,7 @@ class Starfield
 				else
 				{
 					myStars[i].setX(myStars[i].getX() - Math.cos(myAngle) * hyperspaceTimer);
-					myStars[i].setY(myStars[i].getY() - Math.sin(-myAngle) * hyperspaceTimer);
+					myStars[i].setY(myStars[i].getY() + Math.sin(myAngle) * hyperspaceTimer);
 					myStars[i].setSize(myStars[i].getSize() + 0.001);
 				}
 			}
@@ -81,5 +81,13 @@ class Starfield
 	public void setHyperspace (String status)
 	{
 		hyperspaceMode = status;
+	}
+	public String getHyperspaceMode()
+	{
+		return hyperspaceMode;
+	}
+	public float getHyperspaceTimer()
+	{
+		return hyperspaceTimer;
 	}
 }

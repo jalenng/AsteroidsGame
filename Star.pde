@@ -3,7 +3,6 @@ class Star //note that this class does NOT extend Floater
 	private double myX;
 	private double myY;
 	private double myZ;
-  private double mySpeed;
 	private float myBrightness;
 	private float mySize;
   private float myHyperspaceTimer;
@@ -17,17 +16,16 @@ class Star //note that this class does NOT extend Floater
   		mySize = (int)(Math.random() * 4);
       myHyperspaceTimer = 0;
   	}
-  	public void show()
+  	public void show(float scale)
   	{
   		noStroke();
   		fill(myBrightness);
-  		ellipse((int)myX, (int)myY, mySize, mySize);
+  		ellipse((int)myX, (int)myY, scale * mySize, scale * mySize);
   	}
-  	public void move()
+  	public void move(float scale)
   	{
-      mySpeed = -4 * spaceship.getDirectionX() / myZ;
-  		myX += mySpeed;
-  		myY += mySpeed;
+  		myX += -4 * scale * spaceship.getDirectionX() / myZ;
+  		myY += -4 * scale * spaceship.getDirectionY() / myZ;
       if (myX > width + 20) {myX = -20;}
   		if (myY > height + 20) {myY = -20;}
   		if (myX < -20) {myX = width + 20;}

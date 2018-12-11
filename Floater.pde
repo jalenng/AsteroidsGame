@@ -32,33 +32,33 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     //rotates the floater by a given number of degrees    
     myPointDirection+=nDegreesOfRotation;   
   }   
-  public void move ()   //move the floater in the current direction of travel
+  public void move (float scale)   //move the floater in the current direction of travel
   {      
     //change the x and y coordinates by myDirectionX and myDirectionY       
-    myCenterX += myDirectionX;    
-    myCenterY += myDirectionY;     
+    myCenterX += myDirectionX * scale;    
+    myCenterY += myDirectionY * scale;     
 
     //wrap around screen    
-    if(myCenterX >width)
+    if(myCenterX > width + 20)
     {     
-      myCenterX = 0;    
+      myCenterX = -20;    
     }    
-    else if (myCenterX<0)
+    else if (myCenterX< -20)
     {     
-      myCenterX = width;    
+      myCenterX = width + 20;    
     }    
-    if(myCenterY >height)
+    if(myCenterY >height + 20)
     {    
-      myCenterY = 0;    
+      myCenterY = -20;    
     } 
-    else if (myCenterY < 0)
+    else if (myCenterY < -20)
     {     
-      myCenterY = height;    
+      myCenterY = height + 20;    
     }   
   }   
-  public void show ()  //Draws the floater at the current position  
+  public void show (double scale)  //Draws the floater at the current position  
   {             
-    fill(myColor);   
+    fill(myColor, 128);   
     stroke(myColor);    
     
     //translate the (x,y) center of the ship to the correct position
@@ -74,12 +74,12 @@ abstract class Floater //Do NOT modify the Floater class! Make changes in the Sp
     beginShape();
     for (int nI = 0; nI < corners; nI++)
     {
-      vertex(xCorners[nI], yCorners[nI]);
+      vertex((float)(xCorners[nI] * scale), (float)(yCorners[nI] * scale));
     }
     endShape(CLOSE);
 
     //"unrotate" and "untranslate" in reverse order
     rotate(-1*dRadians);
     translate(-1*(float)myCenterX, -1*(float)myCenterY);
-  }   
+  } 
 } 
