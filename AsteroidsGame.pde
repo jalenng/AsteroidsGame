@@ -18,7 +18,7 @@ ArrayList <Bullet> bulletsList = new ArrayList <Bullet>();
 public void setup() 
 {
 	frameRate(60);
-	size(800, 800);
+	size(500, 500);
 	masterScale = Math.min(width, height) / 400;
 	spaceship = new Spaceship();
 	sky = new Starfield(700);
