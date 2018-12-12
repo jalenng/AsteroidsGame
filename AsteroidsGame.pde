@@ -140,7 +140,7 @@ public void keyReleased()
 
 public void keyDownMethod()
 {	
-	if (sky.getHyperspaceMode() == "off")
+	if (sky.getHyperspaceMode() == "off" || spaceship.getHealth() >= 0)
 	{
 		if (wIsPressed)	{
 			spaceship.accelerate(0.1);

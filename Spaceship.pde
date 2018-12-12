@@ -15,6 +15,25 @@ class Spaceship extends Floater
     	xCorners = xS;
     	yCorners = yS;
     }
+    public void show(double scale)
+    {
+        super.show(scale * 1.5);
+        if (myHealth == 0)
+        {
+            if(spaceship.getDirectionX() > 0.05 || spaceship.getDirectionY() > 0.05)
+            {
+                decelerate();
+            }
+            else
+            {
+                for(int i = 0; i < xCorners.length; i++)
+                {
+                    xCorners[i] *= 0.99;
+                    yCorners[i] *= 0.99;
+                }
+            }
+        }
+    }
 	public void setX(int x)
 	{
 		myCenterX = x;

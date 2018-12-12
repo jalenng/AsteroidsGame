@@ -29,13 +29,13 @@ public class Dashboard
 		{
 			if (i < myHearts)
 			{
-				fill(255, 0, 0, 150);
+				text("❤", (3 * scale) + (25 * scale * i), height - (10 * scale));
 			}
 			else 
 			{
-				fill(75, 0, 0, 150);
+				text("🖤", (3 * scale) + (25 * scale * i), height - (10 * scale));
 			}
-			text("♡", (3 * scale) + (25 * scale * i), height - (10 * scale));
+			
 		}
 	}
 }
