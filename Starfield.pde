@@ -9,8 +9,8 @@ class Starfield
 	{
 		backgroundAlpha = 255;
 		myStars = new Star[stars];
-		hyperspaceMode = "off";
-		hyperspaceTimer = 0.05;
+		hyperspaceMode = "exiting";
+		hyperspaceTimer = 20;
 		for (int i = 0; i < myStars.length; i++)
 		{
 			myStars[i] = new Star();

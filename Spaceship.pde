@@ -1,7 +1,9 @@
 class Spaceship extends Floater  
 {  
+	private int myHealth;
 	public Spaceship()
     {
+    	myHealth = 3;
     	myCenterX = width / 2;
     	myCenterY = height / 2;
     	myColor = color(150, 150, 150);
@@ -44,6 +46,19 @@ class Spaceship extends Floater
     public double getDirectionY()
     {
     	return myDirectionY;
+    }
+    public int getHealth()
+    {
+    	return myHealth;
+    }
+    public void setHealth(int health)
+    {
+    	myHealth = health;
+    }
+    public void deccelerate()
+    {
+    	myDirectionX *= 0.9;
+    	myDirectionY *= 0.9;
     }
     public void setPointDirection(int degrees)
     {

@@ -16,7 +16,7 @@ class Asteroid extends Floater
     	myDirectionX = myInitSpeed * Math.cos(myInitAngle);
     	myDirectionY = myInitSpeed * Math.sin(myInitAngle);
     	myColor = color(100);
-    	myScale = Math.random() + 0.5;
+    	myScale = (Math.random() * 1.5) + 0.5;
     	corners = 17;
     	xCorners = new int[corners];
     	yCorners = new int[corners];

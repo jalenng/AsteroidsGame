@@ -9,6 +9,7 @@ int lastBulletTimer;
 float masterScale;
 
 //your variable declarations here
+Dashboard dash;
 Spaceship spaceship;
 Starfield sky;
 Bullet die;
@@ -20,6 +21,7 @@ public void setup()
 	frameRate(60);
 	size(500, 500);
 	masterScale = Math.min(width, height) / 400;
+	dash = new Dashboard();
 	spaceship = new Spaceship();
 	sky = new Starfield(700);
 	for (int i = 0; i < 15; i++)
@@ -40,6 +42,7 @@ public void draw()
 		if (dist(spaceship.getX(), spaceship.getY(), 
 			asteroidsList.get(i).getX(), asteroidsList.get(i).getY()) < 15)
 		{
+			spaceship.setHealth(spaceship.getHealth() - 1);
 			asteroidsList.remove(i);
 		}
 	}
@@ -70,6 +73,9 @@ public void draw()
 	}
 	spaceship.show(masterScale * scale);
 	spaceship.move(masterScale);
+	dash.setHearts(spaceship.getHealth());
+	dash.setAsteroidsAmt(asteroidsList.size());
+	dash.show(masterScale);
 	if (keyPressed) {keyDownMethod();}
 }
 
@@ -137,11 +143,18 @@ public void keyDownMethod()
 	if (sky.getHyperspaceMode() == "off")
 	{
 		if (wIsPressed)	{
-			spaceship.accelerate(0.04);
+			spaceship.accelerate(0.1);
 		}
 		if (sIsPressed)
 		{
-			spaceship.accelerate(-0.02);
+			if(spaceship.getDirectionX() > 0.05 || spaceship.getDirectionY() > 0.05)
+			{
+				spaceship.deccelerate();
+			}
+			else
+			{
+				sky.setHyperspace("entering");
+			}
 		}
 		if (aIsPressed)
 		{
@@ -150,10 +163,6 @@ public void keyDownMethod()
 		if (dIsPressed)
 		{
 			spaceship.turn(5);
-		}
-		if (shiftIsPressed)
-		{
-			sky.setHyperspace("entering");
 		}
 		if (spaceIsPressed)
 		{
