@@ -149,7 +149,7 @@ public void keyDownMethod()
 		{
 			if(spaceship.getDirectionX() > 0.05 || spaceship.getDirectionY() > 0.05)
 			{
-				spaceship.deccelerate();
+				spaceship.decelerate();
 			}
 			else
 			{

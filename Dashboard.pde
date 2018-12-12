@@ -7,7 +7,7 @@ public class Dashboard
 	public Dashboard()
 	{
 		myFont = createFont("Bahnschrift", 10, true);
-		myEmojiFont = createFont("Segoe UI Emoji", 10, true);
+		myEmojiFont = createFont("Segoe UI Emoji", 10, false);
 	}
 	public void setHearts(int hearts)
 	{

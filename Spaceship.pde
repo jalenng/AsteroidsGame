@@ -55,7 +55,7 @@ class Spaceship extends Floater
     {
     	myHealth = health;
     }
-    public void deccelerate()
+    public void decelerate()
     {
     	myDirectionX *= 0.9;
     	myDirectionY *= 0.9;
