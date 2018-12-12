@@ -35,7 +35,7 @@ public class Dashboard
 			{
 				fill(75, 0, 0, 150);
 			}
-			text("❤", (3 * scale) + (25 * scale * i), height - (10 * scale));
+			text("♡", (3 * scale) + (25 * scale * i), height - (10 * scale));
 		}
 	}
 }
