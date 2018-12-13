@@ -40,7 +40,7 @@ public void draw()
 		asteroidsList.get(i).show(masterScale * scale);
 		asteroidsList.get(i).move(masterScale);
 		if (dist(spaceship.getX(), spaceship.getY(), 
-			asteroidsList.get(i).getX(), asteroidsList.get(i).getY()) < 20 * scale)
+			asteroidsList.get(i).getX(), asteroidsList.get(i).getY()) < asteroidsList.get(i).getMaxRad() * masterScale)
 		{
 			spaceship.setHealth(spaceship.getHealth() - 1);
 			asteroidsList.remove(i);
@@ -59,7 +59,7 @@ public void draw()
 		for (int j = 0; j < asteroidsList.size(); j++)
 		{
 			if (dist(bulletsList.get(i).getX(), bulletsList.get(i).getY(), 
-				asteroidsList.get(j).getX(), asteroidsList.get(j).getY()) < 20 * masterScale)
+				asteroidsList.get(j).getX(), asteroidsList.get(j).getY()) < asteroidsList.get(i).getMaxRad() * masterScale)
 			{
 				bulletsList.remove(i);
 				asteroidsList.remove(j);

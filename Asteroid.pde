@@ -4,6 +4,7 @@ class Asteroid extends Floater
 	private double myInitSpeed;
 	private double myInitAngle;
 	private double myScale;
+	private double myMaxRad;
 	private int[] xSOriginal = {15, 15, 11, 8, 6, 0, -6, -8, -13, -15, -15, -14, -8, -1, 6, 11, 14};
    	private int[] ySOriginal = {0, 2, 8, 11, 12, 12, 11, 11, 5, -2, -3, -5, -9, -12, -11, -7, -4};
 	public Asteroid() 
@@ -17,6 +18,7 @@ class Asteroid extends Floater
     	myDirectionY = myInitSpeed * Math.sin(myInitAngle);
     	myColor = color(100);
     	myScale = (Math.random() * 1.5) + 0.5;
+    	myMaxRad = 15 * myScale;
     	corners = 17;
     	xCorners = new int[corners];
     	yCorners = new int[corners];
@@ -70,5 +72,9 @@ class Asteroid extends Floater
     public double getPointDirection()
     {
     	return myPointDirection;
+    }
+    public double getMaxRad()
+    {
+    	return myMaxRad;
     }
 }

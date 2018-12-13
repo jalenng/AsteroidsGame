@@ -28,8 +28,8 @@ class Spaceship extends Floater
             {
                 for(int i = 0; i < xCorners.length; i++)
                 {
-                    xCorners[i] *= 0.99999;
-                    yCorners[i] *= 0.99999;
+                    xCorners[i] *= 0.9;
+                    yCorners[i] *= 0.9;
                 }
             }
         }
