@@ -23,6 +23,7 @@ public class Dashboard
 	{
 		textFont(myFont);
 		textSize(40 * scale);
+		textAlign(LEFT, BOTTOM);
 		fill(255, 150);
 		text(myAsteroidsAmt, (3 * scale), height - (35 * scale));
 		textFont(myEmojiFont);
@@ -39,14 +40,25 @@ public class Dashboard
 			}
 			
 		}
-		if (myHearts <= 0)
+		if (myHearts <= 0 || myAsteroidsAmt <= 0)
 		{
+			noStroke();
 			fill(0, myGameOverAlpha);
 			rect(0, 0, width, height);
-			fill(125, 0, 0, myGameOverAlpha - 200);
 			textFont(myFont);
-			textSize(30 * scale);
-			text("you ran out of lives", 120 * scale, height / 2);
+			textAlign(CENTER, CENTER);
+			if (myHearts <= 0)
+			{
+				fill(125, 0, 0, myGameOverAlpha - 200);
+				textSize(20 * scale);
+				text("you ran out of lives", width / 2, height / 2);
+			}
+			else if (myAsteroidsAmt <= 0)
+			{
+				fill(255, myGameOverAlpha - 200);
+				textSize(40 * scale);
+				text("you won!", width / 2, height / 2);
+			}
 			myGameOverAlpha += 5;
 		}
 	}
