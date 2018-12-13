@@ -4,8 +4,10 @@ public class Dashboard
 	private PFont myEmojiFont;
 	private int myHearts;
 	private int myAsteroidsAmt;
+	private int myGameOverAlpha;
 	public Dashboard()
 	{
+		myGameOverAlpha = 0;
 		myFont = createFont("Bahnschrift", 10, true);
 		myEmojiFont = createFont("Segoe UI Emoji", 10, false);
 	}
@@ -36,6 +38,16 @@ public class Dashboard
 				text("🖤", (3 * scale) + (25 * scale * i), height - (10 * scale));
 			}
 			
+		}
+		if (myHearts <= 0)
+		{
+			fill(0, myGameOverAlpha);
+			rect(0, 0, width, height);
+			fill(125, 0, 0, myGameOverAlpha - 200);
+			textFont(myFont);
+			textSize(30 * scale);
+			text("you ran out of lives", 120 * scale, height / 2);
+			myGameOverAlpha += 5;
 		}
 	}
 }

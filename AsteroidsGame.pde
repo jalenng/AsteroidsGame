@@ -40,7 +40,7 @@ public void draw()
 		asteroidsList.get(i).show(masterScale * scale);
 		asteroidsList.get(i).move(masterScale);
 		if (dist(spaceship.getX(), spaceship.getY(), 
-			asteroidsList.get(i).getX(), asteroidsList.get(i).getY()) < 20)
+			asteroidsList.get(i).getX(), asteroidsList.get(i).getY()) < 20 * scale)
 		{
 			spaceship.setHealth(spaceship.getHealth() - 1);
 			asteroidsList.remove(i);
@@ -140,7 +140,7 @@ public void keyReleased()
 
 public void keyDownMethod()
 {	
-	if (sky.getHyperspaceMode() == "off" || spaceship.getHealth() >= 0)
+	if (sky.getHyperspaceMode() == "off" || spaceship.getHealth()                >= 0)
 	{
 		if (wIsPressed)	{
 			spaceship.accelerate(0.1);
