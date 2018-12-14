@@ -24,7 +24,7 @@ public void setup()
 	dash = new Dashboard();
 	spaceship = new Spaceship();
 	sky = new Starfield(700);
-	for (int i = 0; i < 15; i++)
+	for (int i = 0; i < 30; i++)
 	{
 		asteroidsList.add(new Asteroid());
 	}
@@ -59,7 +59,7 @@ public void draw()
 		for (int j = 0; j < asteroidsList.size(); j++)
 		{
 			if (dist(bulletsList.get(i).getX(), bulletsList.get(i).getY(), 
-				asteroidsList.get(j).getX(), asteroidsList.get(j).getY()) < asteroidsList.get(j).getMaxRad() * masterScale)
+				asteroidsList.get(j).getX(), asteroidsList.get(j).getY()) < asteroidsList.get(j).getMaxRad() * masterScale * 0.5)
 			{
 				bulletsList.remove(i);
 				asteroidsList.remove(j);
@@ -140,7 +140,7 @@ public void keyReleased()
 
 public void keyDownMethod()
 {	
-	if (sky.getHyperspaceMode() == "off" || spaceship.getHealth()                >= 0)
+	if (sky.getHyperspaceMode() == "off" || spaceship.getHealth()>= 0)
 	{
 		if (wIsPressed)	{
 			spaceship.accelerate(0.1);
@@ -158,11 +158,11 @@ public void keyDownMethod()
 		}
 		if (aIsPressed)
 		{
-			spaceship.turn(-5);
+			spaceship.turn(-3);
 		}
 		if (dIsPressed)
 		{
-			spaceship.turn(5);
+			spaceship.turn(3);
 		}
 		if (spaceIsPressed)
 		{
