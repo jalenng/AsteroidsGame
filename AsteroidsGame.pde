@@ -59,7 +59,7 @@ public void draw()
 		for (int j = 0; j < asteroidsList.size(); j++)
 		{
 			if (dist(bulletsList.get(i).getX(), bulletsList.get(i).getY(), 
-				asteroidsList.get(j).getX(), asteroidsList.get(j).getY()) < asteroidsList.get(i).getMaxRad() * masterScale)
+				asteroidsList.get(j).getX(), asteroidsList.get(j).getY()) < asteroidsList.get(j).getMaxRad() * masterScale)
 			{
 				bulletsList.remove(i);
 				asteroidsList.remove(j);
