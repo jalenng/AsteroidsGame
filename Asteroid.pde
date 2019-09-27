@@ -78,3 +78,5 @@ class Asteroid extends Floater
     	return myMaxRad;
     }
 }
+
+//POOP!
